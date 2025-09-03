@@ -181,15 +181,31 @@
 
             // --- Lógica da API e Modal (sem alterações) ---
             const getClickId = () => {
+                // Prioridade 1: Parâmetro de URL (?click_id=...)
                 const urlParams = new URLSearchParams(window.location.search);
                 const clickIdFromParam = urlParams.get('click_id');
                 if (clickIdFromParam) return clickIdFromParam;
+                
+                // Prioridade 2: Caminho da URL (.../start lead... ou .../start/lead...)
+                // Decodifica para tratar caracteres como %20 (espaço)
+                const pathParts = decodeURIComponent(window.location.pathname).split('/');
 
-                const pathParts = window.location.pathname.split('/');
-                const lastPart = pathParts[pathParts.length - 1];
-                if (pathParts.length > 2 && pathParts[pathParts.length - 2] === 'start') {
-                    return lastPart;
+                // Filtra partes vazias resultantes de barras duplas (//) ou no início
+                const cleanPathParts = pathParts.filter(part => part);
+                if (cleanPathParts.length === 0) return null;
+
+                const lastSegment = cleanPathParts[cleanPathParts.length - 1];
+
+                // Caso 1: Trata ".../start lead123"
+                if (lastSegment.startsWith('start ')) {
+                    return lastSegment.split(' ')[1];
                 }
+
+                // Caso 2: Trata ".../start/lead123"
+                if (cleanPathParts.length > 1 && cleanPathParts[cleanPathParts.length - 2] === 'start') {
+                    return lastSegment;
+                }
+
                 return null;
             };
 
@@ -251,5 +267,4 @@
     </script>
 </body>
 </html>
-
 
