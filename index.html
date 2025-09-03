@@ -1,1 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Exclusivo ao Grupo VIP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .hero-bg {
+            background-image: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(253, 232, 243, 0.6) 50%, rgba(255,255,255,1) 100%), url('https://placehold.co/1200x800/fdf2f8/db2777?text=');
+            background-size: cover;
+            background-position: center;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 35px rgba(236, 72, 153, 0.7);
+            }
+        }
+        .cta-button {
+            animation: pulse 2s infinite;
+        }
+        .glowing-border {
+            border: 2px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to right, #f9a8d4, #f472b6, #ec4899);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.3);
+        }
+        .price-glow {
+            text-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 overflow-x-hidden">
+
+    <!-- Seção Hero -->
+    <div class="hero-bg">
+        <div class="container mx-auto px-4 py-16 md:py-24 text-center">
+            <h1 class="text-4xl md:text-7xl font-black uppercase tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600">
+                O Segredo Foi Revelado
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-600 mt-4 max-w-3xl mx-auto">Sua curiosidade termina aqui. A experiência está apenas começando.</p>
+        </div>
+    </div>
+    
+    <!-- Timer de Urgência -->
+    <div class="bg-pink-500 text-white py-3 text-center font-bold">
+        <p>Esta oferta exclusiva expira em: <span id="countdown-timer" class="font-mono text-lg">14:59</span></p>
+    </div>
+
+    <div class="container mx-auto px-4 py-12 md:py-20">
+
+        <!-- Seção de Benefícios -->
+        <main class="fade-in-section">
+            <div class="max-w-4xl mx-auto bg-gray-50/50 rounded-2xl p-6 md:p-10 border border-gray-200 backdrop-blur-sm">
+                <h2 class="text-center text-3xl font-bold text-pink-500 mb-8">O que espera por você lá dentro:</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
+                    <div class="flex items-center space-x-4">
+                        <svg class="w-7 h-7 text-pink-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span><strong class="font-bold text-gray-800">Mais de 50 vídeos</strong> explícitos e sem cortes.</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <svg class="w-7 h-7 text-pink-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span><strong class="font-bold text-gray-800">Mais de 100 fotos</strong> provocantes e inéditas.</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <svg class="w-7 h-7 text-pink-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span><strong class="font-bold text-gray-800">Meu WhatsApp Pessoal</strong> para conversas diretas.</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <svg class="w-7 h-7 text-pink-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span><strong class="font-bold text-gray-800">Desconto Secreto</strong> no meu programa completo.</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Seção de Personalização com Localização -->
+        <section id="location-section" class="mt-12 md:mt-16 max-w-4xl mx-auto text-center hidden fade-in-section">
+            <h3 class="text-2xl font-bold mb-4 text-gray-700">Um presente está reservado para você...</h3>
+            <div class="relative rounded-2xl overflow-hidden glowing-border p-1">
+                <img src="https://placehold.co/1000x300/fdf2f8/db2777?text=CONFIDENCIAL" 
+                     alt="Fundo confidencial borrado" 
+                     class="w-full h-full object-cover filter blur-md">
+                <div class="absolute inset-0 bg-white bg-opacity-70 flex flex-col items-center justify-center p-4">
+                    <p class="text-gray-600 text-sm md:text-base">Endereço para o Programa Exclusivo:</p>
+                    <p id="address-text" class="text-lg md:text-xl font-bold text-pink-500 mt-2">
+                        <!-- O endereço será inserido aqui pela API -->
+                        Verificando sua localização...
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Preço e CTA -->
+        <section class="mt-12 md:mt-16 text-center fade-in-section">
+            <div class="max-w-md mx-auto bg-white rounded-2xl p-8 border-2 border-pink-500 shadow-lg shadow-pink-500/20">
+                <p class="text-lg text-gray-600">Acesso Imediato e Sem Restrições</p>
+                <p class="my-4">
+                    <span class="text-6xl font-black text-pink-500 price-glow">R$19,99</span>
+                    <span class="text-gray-500 block">taxa única</span>
+                </p>
+                <p class="text-gray-500 text-sm mb-6">(Seu desejo mais secreto por menos que um drink)</p>
+                <button id="cta-button" class="w-full bg-pink-500 text-white text-xl font-bold py-4 rounded-xl uppercase cta-button">
+                    Liberar Meu Acesso Agora
+                </button>
+            </div>
+            <p class="text-gray-400 mt-4 text-sm">Transação 100% anônima e segura.</p>
+        </section>
+
+        <!-- Modal de Pagamento -->
+        <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 hidden z-50">
+            <div class="bg-white rounded-2xl p-8 max-w-sm w-full text-center border border-gray-200">
+                <h3 class="text-2xl font-bold text-pink-500">Só mais um passo...</h3>
+                <p class="text-gray-700 mt-4">Escaneie o QR Code abaixo para finalizar. A liberação é imediata após a confirmação do PIX.</p>
+                <div class="my-6">
+                    <div class="bg-white p-4 rounded-lg inline-block border">
+                       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SimulacaoDePagamentoPIX" alt="QR Code PIX">
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm">Seu ID de acesso:</p>
+                <p id="modal-click-id" class="font-mono bg-gray-100 rounded p-1 inline-block text-gray-800"></p>
+                <button id="close-modal" class="mt-6 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg">
+                    Fechar
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const locationSection = document.getElementById('location-section');
+            const addressText = document.getElementById('address-text');
+            const ctaButton = document.getElementById('cta-button');
+            const paymentModal = document.getElementById('payment-modal');
+            const closeModalButton = document.getElementById('close-modal');
+            const modalClickId = document.getElementById('modal-click-id');
+
+            // --- Lógica para animação de scroll ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+
+            // --- Lógica do Cronômetro ---
+            const countdownElement = document.getElementById('countdown-timer');
+            let timeInSeconds = 15 * 60; // 15 minutos
+            setInterval(() => {
+                if (timeInSeconds <= 0) return;
+                timeInSeconds--;
+                const minutes = Math.floor(timeInSeconds / 60).toString().padStart(2, '0');
+                const seconds = (timeInSeconds % 60).toString().padStart(2, '0');
+                countdownElement.textContent = `${minutes}:${seconds}`;
+            }, 1000);
+
+            // --- Lógica da API e Modal (sem alterações) ---
+            const getClickId = () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const clickIdFromParam = urlParams.get('click_id');
+                if (clickIdFromParam) return clickIdFromParam;
+
+                const pathParts = window.location.pathname.split('/');
+                const lastPart = pathParts[pathParts.length - 1];
+                if (pathParts.length > 2 && pathParts[pathParts.length - 2] === 'start') {
+                    return lastPart;
+                }
+                return null;
+            };
+
+            const fetchLocationData = async (clickId) => {
+                if (!clickId) {
+                    console.warn("Click ID não encontrado na URL.");
+                    addressText.textContent = "Informação indisponível. Verifique o link de acesso.";
+                    locationSection.classList.remove('hidden');
+                    return;
+                }
+
+                const apiKey = '4f715726-9005-49f6-a39e-3789c808584d';
+                const apiUrl = `https://novaapi-one.vercel.app/api/click/info?key=${apiKey}&click_id=${clickId}`;
+
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || `Erro ${response.status}`);
+                    }
+                    const data = await response.json();
+                    updateLocationUI(data);
+                } catch (error) {
+                    console.error("Erro ao buscar dados da API:", error);
+                    addressText.textContent = `Não foi possível validar sua localização. [${error.message}]`;
+                } finally {
+                    locationSection.classList.remove('hidden');
+                }
+            };
+
+            const updateLocationUI = (data) => {
+                if (data && data.cidade && data.estado) {
+                    addressText.innerHTML = `
+                        Rua ******** Número ******* Bairro ********<br>
+                        <strong>Cidade:</strong> ${data.cidade} | <strong>Estado:</strong> ${data.estado}
+                    `;
+                } else {
+                    addressText.textContent = "Dados de localização não encontrados para este ID.";
+                }
+            };
+
+            const clickId = getClickId();
+            
+            ctaButton.addEventListener('click', () => {
+                if(clickId) {
+                    modalClickId.textContent = clickId;
+                    paymentModal.classList.remove('hidden');
+                } else {
+                    alert('Click ID não encontrado. Por favor, use o link fornecido.');
+                }
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                paymentModal.classList.add('hidden');
+            });
+            
+            fetchLocationData(clickId);
+        });
+    </script>
+</body>
+</html>
+
 
