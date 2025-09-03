@@ -179,33 +179,28 @@
                 countdownElement.textContent = `${minutes}:${seconds}`;
             }, 1000);
 
-            // --- Lógica da API e Modal (sem alterações) ---
+            // --- Lógica da API e Modal ---
             const getClickId = () => {
                 // Prioridade 1: Parâmetro de URL (?click_id=...)
                 const urlParams = new URLSearchParams(window.location.search);
                 const clickIdFromParam = urlParams.get('click_id');
                 if (clickIdFromParam) return clickIdFromParam;
                 
-                // Prioridade 2: Caminho da URL (.../start lead... ou .../start/lead...)
-                // Decodifica para tratar caracteres como %20 (espaço)
-                const pathParts = decodeURIComponent(window.location.pathname).split('/');
+                // Prioridade 2: Caminho da URL
+                const path = decodeURIComponent(window.location.pathname);
 
-                // Filtra partes vazias resultantes de barras duplas (//) ou no início
-                const cleanPathParts = pathParts.filter(part => part);
-                if (cleanPathParts.length === 0) return null;
-
-                const lastSegment = cleanPathParts[cleanPathParts.length - 1];
-
-                // Caso 1: Trata ".../start lead123"
-                if (lastSegment.startsWith('start ')) {
-                    return lastSegment.split(' ')[1];
+                // Regex para encontrar "start lead..." ou "start/lead..."
+                const startPatternMatch = path.match(/start[\s\/]+([a-zA-Z0-9\-_]+)/);
+                if (startPatternMatch && startPatternMatch[1]) {
+                    return startPatternMatch[1];
                 }
 
-                // Caso 2: Trata ".../start/lead123"
-                if (cleanPathParts.length > 1 && cleanPathParts[cleanPathParts.length - 2] === 'start') {
-                    return lastSegment;
+                // Fallback para apenas o ID no caminho, como /lead12345
+                const cleanPath = path.replace(/^\/+|\/+$/g, '');
+                if (cleanPath.startsWith('lead')) {
+                   return cleanPath;
                 }
-
+                
                 return null;
             };
 
@@ -228,7 +223,8 @@
                     }
                     const data = await response.json();
                     updateLocationUI(data);
-                } catch (error) {
+                } catch (error)
+                 {
                     console.error("Erro ao buscar dados da API:", error);
                     addressText.textContent = `Não foi possível validar sua localização. [${error.message}]`;
                 } finally {
@@ -254,7 +250,9 @@
                     modalClickId.textContent = clickId;
                     paymentModal.classList.remove('hidden');
                 } else {
-                    alert('Click ID não encontrado. Por favor, use o link fornecido.');
+                    // Usar um modal customizado em vez de alert
+                    addressText.textContent = "Click ID não encontrado. Por favor, use o link fornecido pelo chat.";
+                    locationSection.classList.remove('hidden');
                 }
             });
 
